@@ -2,12 +2,15 @@
 
 namespace App\Components;
 
+use App\Controller\IndexController;
 use App\Entity\TodoList;
 use App\Form\Type\TodoListType;
 use App\Repository\TodoListRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
@@ -63,6 +66,13 @@ class TodoListComponent extends AbstractController
         $lists = $this->todoListRepository->findAll();
 
         return $lists;
+    }
+
+
+    #[LiveAction]
+    public function new(): Response
+    {
+        return $this->redirectToRoute(IndexController::ROUTE_NAME);
     }
 
 
