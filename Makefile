@@ -4,3 +4,9 @@ COMPOSER = $(DOCKER_COMPOSE) exec php composer
 
 phpstan:
 	$(DOCKER_COMPOSE) exec php vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=1024M
+
+assets-install:
+	$(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.override.yml run --rm node yarn install
+
+assets-build:
+	$(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.override.yml run --rm node yarn dev

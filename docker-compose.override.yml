@@ -24,5 +24,11 @@ services:
       - ./public:/srv/app/public:ro
       - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
 
+  node:
+    image: node:16.14
+    volumes:
+        - ./:/srv/app
+    working_dir: /srv/app
+
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
