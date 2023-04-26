@@ -13,7 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class IndexController extends AbstractController
 {
 
-    #[Route(path: '/{id<\d+>?}', name: 'app_index')]
+    const ROUTE_NAME = 'app_index';
+
+
+    #[Route(path: '/{id<\d+>?}', name: self::ROUTE_NAME)]
     public function index(Request $request, EntityManagerInterface $entityManager, ?TodoList $todoList = null): Response
     {
         if (\is_null($todoList)) {
@@ -33,7 +36,7 @@ class IndexController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_index', ['id' => $todoList->getId()]);
+            return $this->redirectToRoute(self::ROUTE_NAME, ['id' => $todoList->getId()]);
 
         }
 
