@@ -27,10 +27,12 @@ class TodoListType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
+                'label' => 'label.name',
                 'required' => false,
             ])
             ->add('items', LiveCollectionType::class, [
                 'entry_type' => TodoListItemType::class,
+                'label' => 'label.items',
                 'by_reference' => false,
             ]);
     }

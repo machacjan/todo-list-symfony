@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Symfony Todo List</target>
+            </trans-unit>
+
+            <trans-unit id="label.name">
+                <source>label.name</source>
+                <target>Name</target>
+            </trans-unit>
+
+            <trans-unit id="label.items">
+                <source>label.items</source>
+                <target>Items</target>
+            </trans-unit>
+
+            <trans-unit id="label.add">
+                <source>label.add</source>
+                <target>Add</target>
+            </trans-unit>
+
+            <trans-unit id="label.new">
+                <source>label.new</source>
+                <target>New</target>
+            </trans-unit>
+
+            <trans-unit id="label.save">
+                <source>label.save</source>
+                <target>Save</target>
+            </trans-unit>
+
+            <trans-unit id="label.edit">
+                <source>label.edit</source>
+                <target>Edit</target>
+            </trans-unit>
+
+            <trans-unit id="label.delete">
+                <source>label.delete</source>
+                <target>Delete</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

@@ -26,6 +26,7 @@ class TodoListItemType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
+                'label' => 'label.name',
                 'required' => false,
             ]);
     }
