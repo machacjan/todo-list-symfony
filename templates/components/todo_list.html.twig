@@ -2,11 +2,11 @@
     {{ form_start(form) }}
         {{ form_row(form.name) }}
         {{ form_row(form.items) }}
-        <button type="submit">Uložit</button>
-        <button type="button">Odstranit</button>
-        <button type="button" data-action="live#action" data-action-name="new">Nový</button>
+        <button type="submit" class="btn btn-success">Uložit</button>
+        <button type="button" class="btn btn-danger">Odstranit</button>
+        <button type="button" class="btn btn-primary" data-action="live#action" data-action-name="new">Nový</button>
     {{ form_end(form) }}
     {% for list in this.lists %}
-        <p>{{ list.name }}<a href="{{ path(constant('App\\Controller\\IndexController::ROUTE_NAME'), { 'id': list.id }) }}">Upravit</a></p>
+        <p>{{ list.name }}<a href="{{ path(constant('App\\Controller\\IndexController::ROUTE_NAME'), { 'id': list.id }) }}" class="btn btn-secondary">Upravit</a></p>
     {% endfor %}
 </div>
