@@ -10,3 +10,12 @@ assets-install:
 
 assets-build:
 	$(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.override.yml run --rm node yarn dev
+
+db:
+	$(SYMFONY) doctrine:database:create
+
+migration:
+	$(SYMFONY) make:migration
+
+migrate:
+	$(SYMFONY) doctrine:migrations:migrate --no-interaction
