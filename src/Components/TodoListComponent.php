@@ -6,11 +6,13 @@ use App\Controller\IndexController;
 use App\Entity\TodoList;
 use App\Form\Type\TodoListType;
 use App\Repository\TodoListRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
@@ -31,7 +33,7 @@ class TodoListComponent extends AbstractController
     public TodoList $todoList;
 
 
-    public function __construct(private TodoListRepository $todoListRepository)
+    public function __construct(private TodoListRepository $todoListRepository, private EntityManagerInterface $entityManager)
     {}
 
 
@@ -69,9 +71,33 @@ class TodoListComponent extends AbstractController
     }
 
 
+    public function isListSaved(): bool
+    {
+        return $this->entityManager->contains($this->todoList);
+    }
+
+
     #[LiveAction]
     public function new(): Response
     {
+        return $this->redirectToRoute(IndexController::ROUTE_NAME);
+    }
+
+
+    #[LiveAction]
+    public function delete(#[LiveArg()] int $id): Response
+    {
+        /** @var TodoList|null */
+        $todoList = $this->todoListRepository->find($id);
+
+        if (!\is_null($todoList)) {
+
+            $this->entityManager->remove($todoList);
+
+            $this->entityManager->flush();
+
+        }
+
         return $this->redirectToRoute(IndexController::ROUTE_NAME);
     }
 

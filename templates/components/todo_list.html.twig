@@ -3,7 +3,9 @@
         {{ form_row(form.name) }}
         {{ form_row(form.items) }}
         <button type="submit" class="btn btn-success">{{ 'label.save'|trans }}</button>
-        <button type="button" class="btn btn-danger">{{ 'label.delete'|trans }}</button>
+        {% if this.isListSaved %}
+            <button type="button" class="btn btn-danger" data-action="live#action" data-action-name="delete(id={{ todoList.id }})">{{ 'label.delete'|trans }}</button>
+        {% endif %}
         <button type="button" class="btn btn-primary" data-action="live#action" data-action-name="new">{{ 'label.new'|trans }}</button>
     {{ form_end(form) }}
     {% for list in this.lists %}
