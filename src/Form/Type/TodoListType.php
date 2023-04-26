@@ -26,7 +26,9 @@ class TodoListType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'required' => false,
+            ])
             ->add('items', LiveCollectionType::class, [
                 'entry_type' => TodoListItemType::class,
                 'by_reference' => false,
