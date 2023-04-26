@@ -16,7 +16,7 @@ class IndexController extends AbstractController
     const ROUTE_NAME = 'app_index';
 
 
-    #[Route(path: '/{id<\d+>?}', name: self::ROUTE_NAME)]
+    #[Route(path: ['en' => '/{id<\d+>?}', 'cs' => '/cs/{id<\d+>?}'], name: self::ROUTE_NAME)]
     public function index(Request $request, EntityManagerInterface $entityManager, ?TodoList $todoList = null): Response
     {
         if (\is_null($todoList)) {

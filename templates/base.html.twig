@@ -19,6 +19,11 @@
                     'form': form
                 }) }}
             </div>
+            <menu class="locale-switcher">
+                {% for locale in ['en', 'cs'] %}
+                    <li{% if app.request.locale is same as(locale) %} class="is-active"{% endif %}><a href="{{ path(constant('App\\Controller\\IndexController::ROUTE_NAME'), { '_locale': locale }) }}">{{ locale|upper }}</a></li>
+                {% endfor %}
+            </menu>
         {% endblock %}
     </body>
 </html>

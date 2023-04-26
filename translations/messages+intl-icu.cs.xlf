@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+    <file source-language="en" target-language="cs" datatype="plaintext" original="file.ext">
+        <body>
+
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Symfony Úkolníček</target>
+            </trans-unit>
+
+            <trans-unit id="label.name">
+                <source>label.name</source>
+                <target>Název</target>
+            </trans-unit>
+
+            <trans-unit id="label.items">
+                <source>label.items</source>
+                <target>Položky</target>
+            </trans-unit>
+
+            <trans-unit id="label.lists">
+                <source>label.lists</source>
+                <target>Seznamy</target>
+            </trans-unit>
+
+            <trans-unit id="label.add">
+                <source>label.add</source>
+                <target>Přidat položku</target>
+            </trans-unit>
+
+            <trans-unit id="label.new">
+                <source>label.new</source>
+                <target>Nový</target>
+            </trans-unit>
+
+            <trans-unit id="label.save">
+                <source>label.save</source>
+                <target>Uložit</target>
+            </trans-unit>
+
+            <trans-unit id="label.edit">
+                <source>label.edit</source>
+                <target>Upravit</target>
+            </trans-unit>
+
+            <trans-unit id="label.delete">
+                <source>label.delete</source>
+                <target>Odstranit</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
