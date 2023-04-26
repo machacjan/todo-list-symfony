@@ -23,13 +23,60 @@ class TodoList
     /**
      * @var Collection<TodoListItem>
      */
-    #[Orm\OneToMany(targetEntity: TodoListItem::class, mappedBy: 'list', cascade: ['persist', 'remove'])]
+    #[Orm\OneToMany(targetEntity: TodoListItem::class, mappedBy: 'list', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $items;
 
 
     public function __construct()
     {
         $this->items = new ArrayCollection();
+    }
+
+
+    /**
+     * @param array<string,mixed> $data
+     */
+    public function __unserialize(array $data): void
+    {
+        if (\array_key_exists('name', $data)) {
+            $this->name = $data['name'];
+        }
+
+        if (\array_key_exists('items', $data)) {
+
+            $unserializedItems = [];
+
+            foreach ($data['items'] as $item) {
+
+                $unserializedItem = new TodoListItem();
+
+                $unserializedItem->__unserialize($item);
+
+                $unserializedItems[] = $unserializedItem;
+
+            }
+
+            $this->items = new ArrayCollection($unserializedItems);
+
+        }
+    }
+
+
+    /**
+     * @return array<string,mixed>
+     */
+    public function __serialize(): array
+    {
+        $data = [
+            'name' => $this->name,
+            'items' => [],
+        ];
+
+        foreach ($this->items as $item) {
+            $data['items'][] = $item->__serialize();
+        }
+
+        return $data;
     }
 
 

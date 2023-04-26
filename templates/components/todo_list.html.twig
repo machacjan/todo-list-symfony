@@ -1,0 +1,10 @@
+<div {{ attributes }}>
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.items) }}
+        <button type="submit">Uložit</button>
+        <button type="button">Odstranit</button>
+    {{ form_end(form) }}
+    {{ dump(todoList) }}
+    {{ dump(this.lists) }}
+</div>

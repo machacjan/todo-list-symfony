@@ -23,6 +23,28 @@ class TodoListItem
     private TodoList $list;
 
 
+    /**
+     * @param array<string,mixed> $data
+     */
+    public function __unserialize(array $data): void
+    {
+        if (\array_key_exists('name', $data)) {
+            $this->name = $data['name'];
+        }
+    }
+
+
+    /**
+     * @return array<string,mixed>
+     */
+    public function __serialize(): array
+    {
+        return [
+            'name' => $this->name,
+        ];
+    }
+
+
     public function getId(): int
     {
         return $this->id;
