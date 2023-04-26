@@ -19,4 +19,5 @@ yarn-error.log
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache
 /phpcs.xml
+.php-cs-fixer.cache
 ###< squizlabs/php_codesniffer ###
