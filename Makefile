@@ -11,6 +11,9 @@ assets-install:
 assets-build:
 	$(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.override.yml run --rm node yarn dev
 
+assets-watch:
+	$(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.override.yml run --rm node yarn watch
+
 db:
 	$(SYMFONY) doctrine:database:create
 

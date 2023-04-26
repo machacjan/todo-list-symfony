@@ -18,6 +18,9 @@ class TodoListItem
     #[Orm\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $name = '';
 
+    #[Orm\Column(type: Types::BOOLEAN)]
+    private bool $checked = false;
+
     #[Orm\ManyToOne(targetEntity: TodoList::class, inversedBy: 'list')]
     #[Orm\JoinColumn(nullable: false)]
     private TodoList $list;
@@ -60,6 +63,20 @@ class TodoListItem
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+
+    public function isChecked(): bool
+    {
+        return $this->checked;
+    }
+
+
+    public function setChecked(bool $checked): self
+    {
+        $this->checked = $checked;
 
         return $this;
     }

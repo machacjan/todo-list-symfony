@@ -1,14 +1,37 @@
-<div {{ attributes }}>
+<div {{ attributes }} class="todo-component">
     {{ form_start(form) }}
         {{ form_row(form.name) }}
-        {{ form_row(form.items) }}
-        <button type="submit" class="btn btn-success">{{ 'label.save'|trans }}</button>
-        {% if this.isListSaved %}
-            <button type="button" class="btn btn-danger" data-action="live#action" data-action-name="delete(id={{ todoList.id }})">{{ 'label.delete'|trans }}</button>
+        <div class="todo-component__items">
+            <header>
+                <h4>{{ 'label.items'|trans }}</h4>
+                {{ form_widget(form.items.vars.button_add, { label: 'label.add'|trans, attr: { class: 'btn btn-sm btn-outline-primary' } }) }}
+            </header>
+            {% for index, itemForm in form.items %}
+                <div class="todo-component__item">
+                    {{ form_row(itemForm.vars.button_delete, { label: 'x', attr: { class: 'btn btn-outline-danger' } }) }}
+                    {{ form_row(itemForm, { label: false }) }}
+                </div>
+            {% endfor %}
+        </div>
+        {% if this.isPartiallyFilled %}
+            <div class="todo-component__actions">
+                <button type="button" class="btn btn-primary" data-action="live#action" data-action-name="new">{{ 'label.new'|trans }}</button>
+                <button type="submit" class="btn btn-success">{{ 'label.save'|trans }}</button>
+            </div>
         {% endif %}
-        <button type="button" class="btn btn-primary" data-action="live#action" data-action-name="new">{{ 'label.new'|trans }}</button>
-    {{ form_end(form) }}
-    {% for list in this.lists %}
-        <p>{{ list.name }}<a href="{{ path(constant('App\\Controller\\IndexController::ROUTE_NAME'), { 'id': list.id }) }}" class="btn btn-secondary">{{ 'label.edit'|trans }}</a></p>
-    {% endfor %}
+    {{ form_end(form, { render_rest: false }) }}
+    {% if this.lists is not empty %}
+        <div class="todo-component__lists">
+            <h2>{{ 'label.lists'|trans }}</h2>
+            <menu>
+                {% for list in this.lists %}
+                    <li>
+                        {{ list.name }}
+                        <a href="{{ path(constant('App\\Controller\\IndexController::ROUTE_NAME'), { 'id': list.id }) }}" class="btn btn-sm btn-secondary">{{ 'label.edit'|trans }}</a>
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-action="live#action" data-action-name="delete(id={{ list.id }})">x</button>
+                    </li>
+                {% endfor %}
+            </menu>
+        </div>
+    {% endif %}
 </div>

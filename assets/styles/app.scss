@@ -1,1 +1,84 @@
 @import "~bootstrap/scss/bootstrap";
+
+body {
+    padding: 1.5rem;
+}
+
+h1 {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.todo-list {
+    max-width: 400px;
+    margin: 1rem auto 0 auto;
+}
+
+.todo-component {
+
+    &__items {
+
+        h4 {
+            margin-bottom: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__item {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+
+        .mb-3 {
+            margin-bottom: 0 !important;
+        }
+
+        > div {
+            order: 2;
+        }
+
+        fieldset {
+            width: 100%;
+            order: 1;
+
+            > div {
+                display: flex;
+                align-items: center;
+    
+                .mb-3:last-of-type {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: .5rem;
+        margin-top: 2rem;
+
+        .btn-success {
+            margin-left: auto;
+        }
+    }
+
+    &__lists {
+        margin-top: 2rem;
+
+        menu {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+    }
+}

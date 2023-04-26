@@ -12,10 +12,13 @@
     </head>
     <body>
         {% block body %}
-            {{ component('todo_list', {
-                'todoList': todo_list,
-                'form': form
-            }) }}
+            <div class="todo-list">
+                <h1>{{ 'title'|trans }}</h1>
+                {{ component('todo_list', {
+                    'todoList': todo_list,
+                    'form': form
+                }) }}
+            </div>
         {% endblock %}
     </body>
 </html>

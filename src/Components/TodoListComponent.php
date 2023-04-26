@@ -71,9 +71,13 @@ class TodoListComponent extends AbstractController
     }
 
 
-    public function isListSaved(): bool
+    public function isPartiallyFilled(): bool
     {
-        return $this->entityManager->contains($this->todoList);
+        if (!empty($this->todoList->getName())) {
+            return true;
+        }
+
+        return !$this->todoList->getItems()->isEmpty();
     }
 
 
