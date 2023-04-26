@@ -1,6 +1,6 @@
 # Todo List Symfony
 
-Simple todo list app written using Symfony framework in a Docker container based on Symfony Docker repository. This is a sample of my code style.
+Simple todo list app written using [Symfony](https://github.com/symfony/symfony) framework in a Docker container based on [Symfony Docker](https://github.com/dunglas/symfony-docker) repository. This repository was created as a showcase for my coding standards and best practices.
 
 ## Getting Started
 
