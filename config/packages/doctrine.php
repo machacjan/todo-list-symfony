@@ -1,10 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
+return static function (ContainerConfigurator $containerConfigurator): void 
+{
     $containerConfigurator->extension('doctrine', [
         'dbal' => [
             'url' => '%env(resolve:DATABASE_URL)%',
@@ -24,14 +23,19 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ],
         ],
     ]);
+
     if ($containerConfigurator->env() === 'test') {
+
         $containerConfigurator->extension('doctrine', [
             'dbal' => [
                 'dbname_suffix' => '_test%env(default::TEST_TOKEN)%',
             ],
         ]);
+
     }
+
     if ($containerConfigurator->env() === 'prod') {
+
         $containerConfigurator->extension('doctrine', [
             'orm' => [
                 'auto_generate_proxy_classes' => false,
@@ -46,6 +50,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 ],
             ],
         ]);
+
         $containerConfigurator->extension('framework', [
             'cache' => [
                 'pools' => [
@@ -58,5 +63,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 ],
             ],
         ]);
+        
     }
 };
