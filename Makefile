@@ -4,6 +4,8 @@ COMPOSER = $(DOCKER_COMPOSE) exec php composer
 
 init:
 	$(DOCKER_COMPOSE) up -d
+	make assets-install
+	make assets-build
 
 phpstan:
 	$(DOCKER_COMPOSE) exec php vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=1024M
