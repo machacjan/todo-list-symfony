@@ -33,6 +33,10 @@ phpcs-fix:
 	$(DOCKER_COMPOSE) exec -e PHP_CS_FIXER_IGNORE_ENV=1 php tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --allow-risky=yes
 	$(DOCKER_COMPOSE) exec php vendor/bin/phpcbf --standard=phpcs.xml.dist --extensions=php --tab-width=4 -sp src
 
+test:
+	$(DOCKER_COMPOSE) exec php vendor/phpunit/phpunit/phpunit
+
 check:
 	make phpcs
 	make phpstan
+	make test
