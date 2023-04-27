@@ -4,6 +4,8 @@ COMPOSER = $(DOCKER_COMPOSE) exec php composer
 
 init:
 	$(DOCKER_COMPOSE) up -d
+	mkdir public/build
+	$(DOCKER_COMPOSE) exec php composer install
 	make assets-install
 	make assets-build
 
