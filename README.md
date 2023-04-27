@@ -5,7 +5,7 @@ Simple todo list app written using [Symfony](https://github.com/symfony/symfony)
 ## Getting Started
 
 1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+).
-2. Run `make init` or `docker compose up -d` if you don't have Make support.
+2. Run `make init` or use the plain commands in Makefile if you don't have Make support.
 3. Open `https://localhost` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334).
 4. (Optional) You can disable the security message by using one of the commands from the next section.
 
