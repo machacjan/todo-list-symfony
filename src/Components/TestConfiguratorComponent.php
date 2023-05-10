@@ -53,7 +53,7 @@ class TestConfiguratorComponent
             $this->activeSection = null;
         }
 
-        $this->dispatchUrlChangeEvent();
+        $this->dispatchUrlChangeEvent(__FUNCTION__);
     }
 
 
@@ -62,15 +62,15 @@ class TestConfiguratorComponent
     {
         $this->activeSection = $sectionName;
 
-        $this->dispatchUrlChangeEvent();
+        $this->dispatchUrlChangeEvent(__FUNCTION__);
     }
 
 
-    private function dispatchUrlChangeEvent(): void
+    private function dispatchUrlChangeEvent(string $source): void
     {
         $url = $this->urlBuilder->build($this->activeTab, $this->activeSection);
 
-        $this->dispatchBrowserEvent('configurator:url:changed', ['url' => $url]);
+        $this->dispatchBrowserEvent('configurator:url:changed', ['url' => $url, 'source' => $source]);
     }
 
 }

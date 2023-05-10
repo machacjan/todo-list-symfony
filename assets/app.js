@@ -19,7 +19,7 @@ class TestConfigurator
     constructor() 
     {
         window.addEventListener('configurator:url:changed', event => {
-            console.log(event.detail.url);
+            console.log(event.detail);
             this.#updateUrl(event.detail.url);
         });
     }
