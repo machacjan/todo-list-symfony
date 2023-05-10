@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{{ 'title'|trans }}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -12,18 +11,10 @@
     </head>
     <body>
         {% block body %}
-            <div class="todo-list">
-                <h1>{{ 'title'|trans }}</h1>
-                {{ component('todo_list', {
-                    'todoList': todo_list,
-                    'form': form
-                }) }}
-            </div>
-            <menu class="locale-switcher">
-                {% for locale in ['en', 'cs'] %}
-                    <li{% if app.request.locale is same as(locale) %} class="is-active"{% endif %}><a href="{{ path(constant('App\\Controller\\IndexController::ROUTE_NAME'), { '_locale': locale }) }}">{{ locale|upper }}</a></li>
-                {% endfor %}
-            </menu>
+            {{ component('test_configurator', {
+                'activeTab': tab_name,
+                'activeSection': section_name
+            }) }}
         {% endblock %}
     </body>
 </html>

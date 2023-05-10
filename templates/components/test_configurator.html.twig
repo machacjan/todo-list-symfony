@@ -1,0 +1,93 @@
+{% trans_default_domain 'public' %}
+
+{% set tab_labels = ['content', 'settings', 'sharing', 'results'] %}
+{% set content_section_labels = ['intro', 'stimuli', 'outro'] %}
+{% set settings_section_labels = ['basic', 'advanced', 'security'] %}
+
+<div class="c-test-configurator js-test-configurator" {{ attributes }}>
+    <header class="c-content-header c-content-header--with-navigation">
+        <div class="o-container">
+            <div class="c-content-header__main">
+                <div class="c-content-header__description">
+                    <h1>{{ 'test_configurator.heading'|trans }}</h1>
+                    <p>{{ 'test_configurator.description'|trans }}</p>
+                </div>
+            </div>
+            <nav class="c-content-header__tabs js-content-header-tabs">
+                <menu class="js-content-header-menu">
+                    {% for index, label in tab_labels %}
+                        <li{% if this.activeTab is same as(label) %} class="is-active"{% endif %} data-index="{{ index }}">
+                            <button 
+                                type="button" 
+                                data-action="live#action"
+                                data-action-name="setActiveTab(tabName={{ label }})"
+                            >{{ ('test_configurator.tab.label.' ~ label)|trans }}</button>
+                        </li>
+                    {% endfor %}
+                </menu>
+            </nav>
+        </div>
+    </header>
+    <div class="o-container p-test-configurator__container">
+        {% if this.activeTab is same as('content') %}
+            <aside class="o-sidebar">
+                <nav class="c-sidebar-menu">
+                    <menu>
+                        {% for label in content_section_labels %}
+                            <li{% if this.activeSection is same as(label) %} class="is-active"{% endif %}>
+                                <button 
+                                    type="button"
+                                    data-action="live#action"
+                                    data-action-name="setActiveSection(sectionName={{ label }})"
+                                >{{ ('test_configurator.menu.' ~ label)|trans }}</button>
+                            </li>
+                        {% endfor %}
+                    </menu>
+                </nav>
+            </aside>
+        {% elseif this.activeTab is same as('settings') %}
+            <aside class="o-sidebar">
+                <nav class="c-sidebar-menu">
+                    <menu>
+                        {% for label in settings_section_labels %}
+                            <li{% if this.activeSection is same as(label) %} class="is-active"{% endif %}>
+                                <button 
+                                    type="button"
+                                    data-action="live#action"
+                                    data-action-name="setActiveSection(sectionName={{ label }})"
+                                >{{ ('test_configurator.menu.' ~ label)|trans }}</button>
+                            </li>
+                        {% endfor %}
+                    </menu>
+                </nav>
+            </aside>
+        {% endif %}
+        {% if this.activeTab is same as('content') %}
+            <section class="c-test-configurator__section">
+                <header>
+                    <h2>
+                        {% if this.activeSection is same as('intro') %}
+                            {{ 'test_configurator.tab.heading.intro'|trans }}
+                        {% elseif this.activeSection is same as('stimuli') %}
+                            {{ 'test_configurator.tab.heading.stimuli'|trans }}
+                        {% elseif this.activeSection is same as('outro') %}
+                            {{ 'test_configurator.tab.heading.outro'|trans }}
+                        {% endif %}
+                    </h2>
+                </header>
+                <div class="c-test-configurator__section__body">
+                    content tab is active
+                </div>
+            </section>
+        {% elseif this.activeTab is same as('settings') %}
+            <section class="c-test-configurator__section">
+                <header>
+                    <h2>{{ ('test_configurator.menu.' ~ this.activeSection)|trans }}</h2>
+                </header>
+                <div class="c-test-configurator__section__body">
+                    settings tab is active
+                </div>
+            </section>
+        {% endif %}
+    </div>
+</div>
